@@ -9,26 +9,29 @@ def inicio(request):
     return render(request, 'interactiva/inicio.html')
 
 def trivias(request):
-    preguntas = PreguntaTrivia.objects.all()
-    pregunta = random.choice(preguntas) if preguntas else None
     respuesta = None
+    pregunta = None
 
     if request.method == 'POST':
         opcion_id = request.POST.get('opcion')
         try:
             opcion = OpcionTrivia.objects.get(id=opcion_id)
+            pregunta = opcion.pregunta  
             if opcion.es_correcta:
                 respuesta = "¡Correcto! 🎉"
             else:
                 respuesta = "Incorrecto 😞"
-            pregunta = opcion.pregunta  # Para mostrar la misma pregunta después de responder
         except OpcionTrivia.DoesNotExist:
             respuesta = "Opción no válida."
+    else:
+        preguntas = PreguntaTrivia.objects.all()
+        pregunta = random.choice(preguntas) if preguntas else None
 
     return render(request, 'interactiva/trivias.html', {
         'pregunta': pregunta,
         'respuesta': respuesta
     })
+
 
 def votacion(request):
     return render(request, 'interactiva/votacion.html')

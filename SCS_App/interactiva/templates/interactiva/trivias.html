@@ -34,14 +34,15 @@
       <!-- Opciones -->
       <form method="post">
         {% csrf_token %}
-        <div class="d-grid gap-2">
+            <div class="d-grid gap-2">
           {% for opcion in pregunta.opciones.all %}
             <button type="submit" name="opcion" value="{{ opcion.id }}" class="btn btn-lg 
               {% cycle 'btn-primary' 'btn-success' 'btn-warning text-dark' 'btn-info text-dark' %}">
               {{ opcion.texto }}
             </button>
           {% endfor %}
-        </div>
+            </div>
+          
       </form>
     {% else %}
       <p>No hay preguntas disponibles.</p>

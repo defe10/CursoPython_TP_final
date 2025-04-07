@@ -1,8 +1,8 @@
 from django.db import models
 
-
+# TRIVIA 
 class PreguntaTrivia(models.Model):
-    texto = models.CharField(max_length=255)
+    texto = models.CharField(max_length=255) # <----- Texto es la pre
 
     def __str__(self):
         return self.texto
@@ -14,6 +14,15 @@ class OpcionTrivia(models.Model):
 
     def __str__(self):
         return self.texto
+    
+# VOTO DEL PUBLICO
+
+class PeliculaVotacion(models.Model):
+    titulo = models.CharField(max_length=200)
+    votos = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.titulo 
 
 class Pelicula(models.Model):
     titulo = models.CharField(max_length=100)

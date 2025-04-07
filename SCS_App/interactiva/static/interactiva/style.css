@@ -75,7 +75,7 @@ html, body {
 /* En móvil: sin bordes ni margen */
 @media (min-width: 768px) {
   .contenido {
-  max-width: 500px;
+  max-width: 300px;
   max-height: 1000px;
   padding: 10px;
   border-radius: 1rem;
